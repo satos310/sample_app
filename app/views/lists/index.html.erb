@@ -2,5 +2,8 @@
 
 <% @lists.each do |list| %>
   <p>タイトル</p>
-  <span><%= list.title %></span>
+  <span>
+    <!-- listに引数「id」を指定 -->
+    <%= link_to list.title, list_path(list.id) %>
+  </span>
 <% end %>
