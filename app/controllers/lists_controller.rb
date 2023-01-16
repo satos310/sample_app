@@ -21,12 +21,21 @@ class ListsController < ApplicationController
     @list = List.find(params[:id])
   end
 
+  # 投稿済のデータを編集
   def edit
+    @list = List.find(params[:id])
+  end
+  
+  #データの更新後に更新結果を詳細画面に表示するために、showアクションにリダイレクトさせる。
+  def update
+    list = List.find(params[:id])
+    list.update(list_params)
+    redirect_to list_path(list.id)
   end
   
   private
   
   def list_params
-    params.require(:list).permit(:title, :body)
+    params.require(:list).permit(:title, :body, :image)
   end
 end
